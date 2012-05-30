@@ -1,0 +1,36 @@
+<../../../mkconfig
+
+TARG=\
+	items.dis\
+	cptree.dis\
+	ftree.dis
+
+MODULES=\
+	items.m\
+	cptree.m\
+
+SYSMODULES=\
+	arg.m\
+	draw.m\
+	plumbmsg.m\
+	popup.m\
+	readdir.m\
+	sh.m\
+	string.m\
+	sys.m\
+	tk.m\
+	tkclient.m\
+
+DISBIN=$BUILDROOT/dis/lib/ftree
+
+all:V:	ftree.dis $TARG
+
+$BUILDROOT/dis/wm/ftree.dis:	ftree.dis
+	rm -f $BUILDROOT/dis/wm/ftree.dis && cp ftree.dis $BUILDROOT/dis/wm/ftree.dis
+
+<$ROOT/mkfiles/mkdis
+
+install:V:	$BUILDROOT/dis/wm/ftree.dis
+
+nuke:V:	nuke-std
+	cd $BUILDROOT/dis/wm; rm -f ftree.dis

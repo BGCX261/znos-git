@@ -1,0 +1,65 @@
+<../../../mkconfig
+
+TARG=sh.dis\
+	arg.dis\
+	expr.dis\
+	mpexpr.dis\
+	file2chan.dis\
+	mload.dis\
+	regex.dis\
+	sexprs.dis\
+	std.dis\
+	string.dis\
+	tk.dis\
+	echo.dis\
+	csv.dis\
+	test.dis\
+
+INS=	$BUILDROOT/dis/sh.dis\
+	$BUILDROOT/dis/sh/arg.dis\
+	$BUILDROOT/dis/sh/expr.dis\
+	$BUILDROOT/dis/sh/file2chan.dis\
+	$BUILDROOT/dis/sh/mload.dis\
+	$BUILDROOT/dis/sh/mpexpr.dis\
+	$BUILDROOT/dis/sh/regex.dis\
+	$BUILDROOT/dis/sh/std.dis\
+	$BUILDROOT/dis/sh/string.dis\
+#	$ROOT/dis/sh/tk.dis\
+	$BUILDROOT/dis/sh/echo.dis\
+	$BUILDROOT/dis/sh/csv.dis\
+	$BUILDROOT/dis/sh/test.dis\
+
+SYSMODULES=\
+	bufio.m\
+	draw.m\
+	env.m\
+	filepat.m\
+	lock.m\
+	sexprs.m\
+	sh.m\
+	string.m\
+	sys.m\
+	tk.m\
+	tkclient.m\
+
+DISBIN=$BUILDROOT/dis/sh
+
+<$ROOT/mkfiles/mkdis
+
+all:V:		$TARG
+
+install:V:	$INS
+
+nuke:V: clean
+	rm -f $INS
+
+clean:V:
+	rm -f *.dis *.sbl
+
+uninstall:V:
+	rm -f $INS
+
+$BUILDROOT/dis/sh.dis:	sh.dis
+	rm -f $BUILDROOT/dis/sh.dis && cp sh.dis $BUILDROOT/dis/sh.dis
+
+%.dis: ${SYSMODULES:%=$MODDIR/%}

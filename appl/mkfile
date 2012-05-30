@@ -1,0 +1,15 @@
+<../mkconfig
+
+DIRS=\
+	charon\
+	cmd\
+	collab\
+	grid\
+	lib\
+	math\
+	spree\
+	svc\
+	tiny\
+	wm\
+
+<$ROOT/mkfiles/mksubdirs
